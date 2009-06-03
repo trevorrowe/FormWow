@@ -1,0 +1,44 @@
+= easy_forms
+
+easy_forms is a Ruby On Rails plugin that simplifies and DRYs up complex forms.
+
+== What Does easy_forms Provide?
+
+The easy_forms plugin provides:
+
+* Fully Decorated Form Fields
+
+  DRY up your forms.  All of the standard form builder methods get labels, 
+  errors, hints, required sysmbols, etc.
+
+* Inline Form Errors
+
+  Rather then a large block of error messages appearing in your page's flash
+  message, why not have the errors appear inline with your form field?!  
+  
+* Clean & Simple Markup
+
+  The default form row decorator generates XHTML 1.1 Strict markup.  Its very
+  simple and concise. 
+
+* Custom Form Row Decorators
+
+  If you don't like the default generated markup for a form row, or have the 
+  need to decorate multiple forms, differently you can provide your own 
+  decorators (simple to do).
+
+* Sample CSS 
+
+  easy_forms comes with a sample CSS file to get you started.
+
+== Possible Names
+
+* easy_forms (easy_form_for)
+* stylish_forms (stylish_form_for)
+* magic_forms (magic_form_for)
+* form_forge (forge_form_for)
+
+== Taken Names
+
+* sexy_forms
+* smart_forms
