@@ -1,27 +1,25 @@
-= easy_forms
+= FormWow
 
-easy_forms is a Ruby On Rails plugin that simplifies and DRYs up complex forms.
+FormWow is a Ruby On Rails plugin that simplifies and DRYs up complex forms.
 
-== What Does easy_forms Provide?
+== What Does FormWow Provide?
 
-The easy_forms plugin provides:
+* Fully decorated form fields
 
-* Fully Decorated Form Fields
+  All of the standard form builder methods are wrapped in a form row with
+  a label, inline form errors, optional hints, required symbols, etc.
 
-  DRY up your forms.  All of the standard form builder methods get labels, 
-  errors, hints, required sysmbols, etc.
-
-* Inline Form Errors
+* Inline form errors
 
   Rather then a large block of error messages appearing in your page's flash
   message, why not have the errors appear inline with your form field?!  
   
-* Clean & Simple Markup
+* Clean & simple markup
 
   The default form row decorator generates XHTML 1.1 Strict markup.  Its very
   simple and concise. 
 
-* Custom Form Row Decorators
+* Use a custom form row decorator
 
   If you don't like the default generated markup for a form row, or have the 
   need to decorate multiple forms, differently you can provide your own 
@@ -29,16 +27,4 @@ The easy_forms plugin provides:
 
 * Sample CSS 
 
-  easy_forms comes with a sample CSS file to get you started.
-
-== Possible Names
-
-* easy_forms (easy_form_for)
-* stylish_forms (stylish_form_for)
-* magic_forms (magic_form_for)
-* form_forge (forge_form_for)
-
-== Taken Names
-
-* sexy_forms
-* smart_forms
+  FormWow comes with a sample CSS file to get you started.
