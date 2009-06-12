@@ -1,5 +1,20 @@
 module FormWow::Helpers
 
+  def self.included base #:nodoc:
+    # Create wow_ prefixed helpers for each std rails form method
+    helpers = %w(form form_for remote_form_for form_remote_for fields_for)
+    helpers.each do |helper|
+      self.module_eval <<-EVAL
+        def wow_#{helper} name, *args, &block
+          options = args.last.is_a?(Hash) ? args.pop : {}
+          options[:builder] = ::FormWow::Builder
+          args.push options
+          #{helper} name, *args, &block
+        end
+      EVAL
+    end
+  end
+
   # Builds a fully-decorated form row with content (form field),
   # hints, label, required symbol, error message, etc. 
   #
@@ -35,17 +50,16 @@ module FormWow::Helpers
 
     options = args.last.is_a?(Hash) ? args.pop : {}
     content = block_given? ? capture(&block) : args.shift
-    label_text = args.shift
+    label = args.shift
 
     ## label
 
-    label = []
+    req_symbol = nil
     if options[:required]
-      symbol = options[:required_symbol] || FormWow.required_symbol
-      label << content_tag('span', symbol, :class => 'required_symbol')
+      req_symbol = options[:required_symbol] || FormWow.required_symbol
+      req_symbol = content_tag('span', req_symbol, :class => 'required_symbol')
     end
-    label << content_tag('span', label_text, :class => 'label')
-    label = content_tag('label', label, :for => options[:label_for])
+    label = label_tag(options[:label_for], [req_symbol, label])
 
     ## hint
   
@@ -65,9 +79,10 @@ module FormWow::Helpers
     css << 'invalid' if options[:error] 
     css << 'required' if options[:required] 
     css << options[:class] if options[:class] 
-    css << 'row'
+    css << FormWow.default_form_row_class
 
-    row = content_tag('div', [label, hint, error, content], :class => css.join(' '))
+    parts = [label, error, hint, content].join("\n")
+    row = content_tag('div', parts, :class => css.join(' '))
 
     # return / output the form row div
 

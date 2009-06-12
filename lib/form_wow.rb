@@ -4,7 +4,9 @@ module FormWow
 
   @@default_decorator = 'form_wow_row'
 
-  mattr_accessor :required_symbol, :default_decorator
+  @@default_form_row_class = 'row'
+
+  mattr_accessor :required_symbol, :default_decorator, :default_form_row_class
 
   def self.nuke_field_error_proc
     ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
