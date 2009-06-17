@@ -1,0 +1,73 @@
+body {
+  font-size: 75%;
+  color: #222;
+  background: #fff;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  width: 500px;
+  margin: auto; }
+
+a {
+  color: blue;
+  text-decoration: none; }
+
+fieldset {
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  padding: 10px 0px; }
+
+legend {
+  padding: 0 5px;
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: bold; }
+
+input.text, input.title, textarea, select {
+  margin: 0;
+  border: 1px solid #bbb; }
+
+input.text:focus, input.title:focus, textarea:focus, select:focus {
+  border: 1px solid #666; }
+
+input.text, textarea {
+  width: 300px;
+  padding: 5px; }
+
+textarea {
+  height: 150px; }
+
+input.invalid, textarea.invalid, select.invalid {
+  border: 1px solid red; }
+
+select {
+  padding: 4px; }
+
+form .row {
+  padding: 0 0 0 130px;
+  margin-bottom: 10px; }
+  form .row label {
+    float: left;
+    display: inline;
+    line-height: 26px;
+    text-align: right;
+    margin: 0 0 0 -130px;
+    width: 120px;
+    font-weight: normal; }
+  form .row .error, form .row .hint {
+    color: #777;
+    font-size: smaller;
+    margin: 0; }
+  form .row .error {
+    color: red; }
+  form .row .required_symbol {
+    padding: 0 5px 0 0;
+    color: red;
+    font-weight: normal; }
+
+.row.cvv2 input {
+  width: 50px; }
+
+input.city {
+  margin-right: 5px; }
+
+input.city, input.state {
+  width: 140px; }
