@@ -26,18 +26,20 @@ class FormWow::Builder < ActionView::Helpers::FormBuilder
   # of the normal short error message, each error is prefixed with the titleized
   # field name.
   def row label = nil, options = {}, &block
+
     raise ArgumentError, 'block required' unless block_given?
 
     begin
-
-      @grouping = false
+      @grouping = true
       @errors = []
 
       content = @template.capture(&block)
+
       options[:class] = options.delete(:row_class) if options[:row_class]
       unless options.has_key?(:error) or @errors.blank?
         options[:error] = @errors.join(', ')
       end
+
       @template.concat(@template.send(@decorator, content, label, options))
 
     ensure
@@ -61,7 +63,7 @@ class FormWow::Builder < ActionView::Helpers::FormBuilder
   def no_decoration &block
     begin
       @grouping = true
-      @errors = []
+      @errors = [] # they are collected and then ignored
       @template.concat(@template.capture(&block))
     ensure
       @grouping = false
@@ -131,8 +133,7 @@ class FormWow::Builder < ActionView::Helpers::FormBuilder
       if errors.empty?
         errors = nil
       else
-        errors = errors.collect{|e| "#{field_title} #{e}" } if @grouping
-        errors = errors.join(', ')
+        errors = errors.collect{|e| "#{label} #{e}" }.join(', ')
       end
 
       row_options[:error] = errors
