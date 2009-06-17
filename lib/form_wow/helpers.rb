@@ -54,12 +54,15 @@ module FormWow::Helpers
 
     ## label
 
-    req_symbol = nil
-    if options[:required]
-      req_symbol = options[:required_symbol] || FormWow.required_symbol
-      req_symbol = content_tag('span', req_symbol, :class => 'required_symbol')
+    if label
+      req_symbol = nil
+      if options[:required]
+        req_symbol = options[:required_symbol] || FormWow.required_symbol
+        req_symbol = content_tag('span', req_symbol, :class => 'required_symbol')
+      end
+      label = [req_symbol, label]
+      label = content_tag('label', label, :for => options[:label_for])
     end
-    label = label_tag(options[:label_for], [req_symbol, label])
 
     ## hint
   
@@ -70,7 +73,7 @@ module FormWow::Helpers
     ## error message
 
     if error = options[:error]
-      error = content_tag('span', error, :class => 'error')
+      error = content_tag('p', error, :class => 'error')
     end
 
     ## form row div
@@ -81,7 +84,7 @@ module FormWow::Helpers
     css << options[:class] if options[:class] 
     css << FormWow.default_form_row_class
 
-    parts = [label, error, hint, content].join("\n")
+    parts = [label, content, error, hint]
     row = content_tag('div', parts, :class => css.join(' '))
 
     # return / output the form row div
